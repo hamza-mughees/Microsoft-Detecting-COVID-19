@@ -1,4 +1,10 @@
+.ipynb_checkpoints
 Actualmed-COVID-chestxray-dataset
 covid-chestxray-dataset
 Figure1-COVID-chestxray-dataset
-.ipynb_checkpoints
+COVID-19-Radiography-Database
+stage_2_test_images
+stage_2_train_images
+stage_2_detailed_class_info.csv
+stage_2_sample_submission.csv
+stage_2_train_labels.csv

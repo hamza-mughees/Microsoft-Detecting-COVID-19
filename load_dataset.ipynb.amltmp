@@ -1,0 +1,181 @@
+{
+  "cells": [
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd"
+      ],
+      "outputs": [],
+      "execution_count": 1,
+      "metadata": {}
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "cohen_csv_path = './covid-chestxray-dataset/metadata.csv'\n",
+        "cohen_img_path = './covid-chestxray-dataset/images'"
+      ],
+      "outputs": [],
+      "execution_count": 34,
+      "metadata": {}
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "fig1_csv_path = './Figure1-COVID-chestxray-dataset/metadata.csv'\n",
+        "fig1_img_path = './Figure1-COVID-chestxray-dataset/images'"
+      ],
+      "outputs": [],
+      "execution_count": 35,
+      "metadata": {}
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "actmed_csv_path = './Actualmed-COVID-chestxray-dataset/metadata.csv'\n",
+        "actmed_img_path = './Actualmed-COVID-chestxray-dataset/images'"
+      ],
+      "outputs": [],
+      "execution_count": 36,
+      "metadata": {}
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "cohen_csv = pd.read_csv(cohen_csv_path)\n",
+        "print(cohen_csv.shape)"
+      ],
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "(950, 30)\n"
+          ]
+        }
+      ],
+      "execution_count": 37,
+      "metadata": {}
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "cohen_csv.head()"
+      ],
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "execution_count": 38,
+          "data": {
+            "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>patientid</th>\n      <th>offset</th>\n      <th>sex</th>\n      <th>age</th>\n      <th>finding</th>\n      <th>RT_PCR_positive</th>\n      <th>survival</th>\n      <th>intubated</th>\n      <th>intubation_present</th>\n      <th>went_icu</th>\n      <th>...</th>\n      <th>date</th>\n      <th>location</th>\n      <th>folder</th>\n      <th>filename</th>\n      <th>doi</th>\n      <th>url</th>\n      <th>license</th>\n      <th>clinical_notes</th>\n      <th>other_notes</th>\n      <th>Unnamed: 29</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>2</td>\n      <td>0.0</td>\n      <td>M</td>\n      <td>65.0</td>\n      <td>Pneumonia/Viral/COVID-19</td>\n      <td>Y</td>\n      <td>Y</td>\n      <td>N</td>\n      <td>N</td>\n      <td>N</td>\n      <td>...</td>\n      <td>January 22, 2020</td>\n      <td>Cho Ray Hospital, Ho Chi Minh City, Vietnam</td>\n      <td>images</td>\n      <td>auntminnie-a-2020_01_28_23_51_6665_2020_01_28_...</td>\n      <td>10.1056/nejmc2001272</td>\n      <td>https://www.nejm.org/doi/full/10.1056/NEJMc200...</td>\n      <td>NaN</td>\n      <td>On January 22, 2020, a 65-year-old man with a ...</td>\n      <td>NaN</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>2</td>\n      <td>3.0</td>\n      <td>M</td>\n      <td>65.0</td>\n      <td>Pneumonia/Viral/COVID-19</td>\n      <td>Y</td>\n      <td>Y</td>\n      <td>N</td>\n      <td>N</td>\n      <td>N</td>\n      <td>...</td>\n      <td>January 25, 2020</td>\n      <td>Cho Ray Hospital, Ho Chi Minh City, Vietnam</td>\n      <td>images</td>\n      <td>auntminnie-b-2020_01_28_23_51_6665_2020_01_28_...</td>\n      <td>10.1056/nejmc2001272</td>\n      <td>https://www.nejm.org/doi/full/10.1056/NEJMc200...</td>\n      <td>NaN</td>\n      <td>On January 22, 2020, a 65-year-old man with a ...</td>\n      <td>NaN</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>2</td>\n      <td>5.0</td>\n      <td>M</td>\n      <td>65.0</td>\n      <td>Pneumonia/Viral/COVID-19</td>\n      <td>Y</td>\n      <td>Y</td>\n      <td>N</td>\n      <td>N</td>\n      <td>N</td>\n      <td>...</td>\n      <td>January 27, 2020</td>\n      <td>Cho Ray Hospital, Ho Chi Minh City, Vietnam</td>\n      <td>images</td>\n      <td>auntminnie-c-2020_01_28_23_51_6665_2020_01_28_...</td>\n      <td>10.1056/nejmc2001272</td>\n      <td>https://www.nejm.org/doi/full/10.1056/NEJMc200...</td>\n      <td>NaN</td>\n      <td>On January 22, 2020, a 65-year-old man with a ...</td>\n      <td>NaN</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>2</td>\n      <td>6.0</td>\n      <td>M</td>\n      <td>65.0</td>\n      <td>Pneumonia/Viral/COVID-19</td>\n      <td>Y</td>\n      <td>Y</td>\n      <td>N</td>\n      <td>N</td>\n      <td>N</td>\n      <td>...</td>\n      <td>January 28, 2020</td>\n      <td>Cho Ray Hospital, Ho Chi Minh City, Vietnam</td>\n      <td>images</td>\n      <td>auntminnie-d-2020_01_28_23_51_6665_2020_01_28_...</td>\n      <td>10.1056/nejmc2001272</td>\n      <td>https://www.nejm.org/doi/full/10.1056/NEJMc200...</td>\n      <td>NaN</td>\n      <td>On January 22, 2020, a 65-year-old man with a ...</td>\n      <td>NaN</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>4</td>\n      <td>0.0</td>\n      <td>F</td>\n      <td>52.0</td>\n      <td>Pneumonia/Viral/COVID-19</td>\n      <td>Y</td>\n      <td>NaN</td>\n      <td>N</td>\n      <td>N</td>\n      <td>N</td>\n      <td>...</td>\n      <td>January 25, 2020</td>\n      <td>Changhua Christian Hospital, Changhua City, Ta...</td>\n      <td>images</td>\n      <td>nejmc2001573_f1a.jpeg</td>\n      <td>10.1056/NEJMc2001573</td>\n      <td>https://www.nejm.org/doi/full/10.1056/NEJMc200...</td>\n      <td>NaN</td>\n      <td>diffuse infiltrates in the bilateral lower lungs</td>\n      <td>NaN</td>\n      <td>NaN</td>\n    </tr>\n  </tbody>\n</table>\n<p>5 rows × 30 columns</p>\n</div>",
+            "text/plain": "  patientid  offset sex   age                   finding RT_PCR_positive  \\\n0         2     0.0   M  65.0  Pneumonia/Viral/COVID-19               Y   \n1         2     3.0   M  65.0  Pneumonia/Viral/COVID-19               Y   \n2         2     5.0   M  65.0  Pneumonia/Viral/COVID-19               Y   \n3         2     6.0   M  65.0  Pneumonia/Viral/COVID-19               Y   \n4         4     0.0   F  52.0  Pneumonia/Viral/COVID-19               Y   \n\n  survival intubated intubation_present went_icu  ...              date  \\\n0        Y         N                  N        N  ...  January 22, 2020   \n1        Y         N                  N        N  ...  January 25, 2020   \n2        Y         N                  N        N  ...  January 27, 2020   \n3        Y         N                  N        N  ...  January 28, 2020   \n4      NaN         N                  N        N  ...  January 25, 2020   \n\n                                            location  folder  \\\n0        Cho Ray Hospital, Ho Chi Minh City, Vietnam  images   \n1        Cho Ray Hospital, Ho Chi Minh City, Vietnam  images   \n2        Cho Ray Hospital, Ho Chi Minh City, Vietnam  images   \n3        Cho Ray Hospital, Ho Chi Minh City, Vietnam  images   \n4  Changhua Christian Hospital, Changhua City, Ta...  images   \n\n                                            filename                   doi  \\\n0  auntminnie-a-2020_01_28_23_51_6665_2020_01_28_...  10.1056/nejmc2001272   \n1  auntminnie-b-2020_01_28_23_51_6665_2020_01_28_...  10.1056/nejmc2001272   \n2  auntminnie-c-2020_01_28_23_51_6665_2020_01_28_...  10.1056/nejmc2001272   \n3  auntminnie-d-2020_01_28_23_51_6665_2020_01_28_...  10.1056/nejmc2001272   \n4                              nejmc2001573_f1a.jpeg  10.1056/NEJMc2001573   \n\n                                                 url  license  \\\n0  https://www.nejm.org/doi/full/10.1056/NEJMc200...      NaN   \n1  https://www.nejm.org/doi/full/10.1056/NEJMc200...      NaN   \n2  https://www.nejm.org/doi/full/10.1056/NEJMc200...      NaN   \n3  https://www.nejm.org/doi/full/10.1056/NEJMc200...      NaN   \n4  https://www.nejm.org/doi/full/10.1056/NEJMc200...      NaN   \n\n                                      clinical_notes other_notes Unnamed: 29  \n0  On January 22, 2020, a 65-year-old man with a ...         NaN         NaN  \n1  On January 22, 2020, a 65-year-old man with a ...         NaN         NaN  \n2  On January 22, 2020, a 65-year-old man with a ...         NaN         NaN  \n3  On January 22, 2020, a 65-year-old man with a ...         NaN         NaN  \n4   diffuse infiltrates in the bilateral lower lungs         NaN         NaN  \n\n[5 rows x 30 columns]"
+          },
+          "metadata": {}
+        }
+      ],
+      "execution_count": 38,
+      "metadata": {}
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "fig1_csv = pd.read_csv(fig1_csv_path, encoding='latin')\n",
+        "print(fig1_csv.shape)"
+      ],
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "(55, 12)\n"
+          ]
+        }
+      ],
+      "execution_count": 39,
+      "metadata": {}
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "fig1_csv.head()"
+      ],
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "execution_count": 40,
+          "data": {
+            "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>patientid</th>\n      <th>offset</th>\n      <th>sex</th>\n      <th>age</th>\n      <th>finding</th>\n      <th>survival</th>\n      <th>temperature</th>\n      <th>pO2 saturation</th>\n      <th>view</th>\n      <th>modality</th>\n      <th>artifacts/distortion</th>\n      <th>notes</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>COVID-00001</td>\n      <td>13.0</td>\n      <td>M</td>\n      <td>33</td>\n      <td>COVID-19</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>58</td>\n      <td>AP erect</td>\n      <td>X-ray</td>\n      <td>NaN</td>\n      <td>O2 saturation was initially 58% on room air an...</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>COVID-00002</td>\n      <td>NaN</td>\n      <td>M</td>\n      <td>50+</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>AP erect</td>\n      <td>X-ray</td>\n      <td>NaN</td>\n      <td>50+ male patient, asthmatic, returning from a ...</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>COVID-00003a</td>\n      <td>8.0</td>\n      <td>M</td>\n      <td>28</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>39.1</td>\n      <td>90</td>\n      <td>AP erect</td>\n      <td>X-ray</td>\n      <td>NaN</td>\n      <td>28M previously fit and well, not on any regula...</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>COVID-00003b</td>\n      <td>8.0</td>\n      <td>M</td>\n      <td>28</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>39.1</td>\n      <td>90</td>\n      <td>AP erect</td>\n      <td>X-ray</td>\n      <td>NaN</td>\n      <td>Post-intubation in the critical care setting</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>COVID-00004</td>\n      <td>2.0</td>\n      <td>M</td>\n      <td>42</td>\n      <td>COVID-19</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>91-92</td>\n      <td>PA</td>\n      <td>X-ray</td>\n      <td>NaN</td>\n      <td>42 year old male patient presented to ED with ...</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text/plain": "      patientid  offset sex  age   finding  survival temperature  \\\n0   COVID-00001    13.0   M   33  COVID-19       NaN         NaN   \n1   COVID-00002     NaN   M  50+       NaN       NaN         NaN   \n2  COVID-00003a     8.0   M   28       NaN       NaN        39.1   \n3  COVID-00003b     8.0   M   28       NaN       NaN        39.1   \n4   COVID-00004     2.0   M   42  COVID-19       NaN         NaN   \n\n  pO2 saturation      view modality artifacts/distortion  \\\n0             58  AP erect    X-ray                  NaN   \n1            NaN  AP erect    X-ray                  NaN   \n2             90  AP erect    X-ray                  NaN   \n3             90  AP erect    X-ray                  NaN   \n4          91-92        PA    X-ray                  NaN   \n\n                                               notes  \n0  O2 saturation was initially 58% on room air an...  \n1  50+ male patient, asthmatic, returning from a ...  \n2  28M previously fit and well, not on any regula...  \n3       Post-intubation in the critical care setting  \n4  42 year old male patient presented to ED with ...  "
+          },
+          "metadata": {}
+        }
+      ],
+      "execution_count": 40,
+      "metadata": {}
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "actmed_csv = pd.read_csv(actmed_csv_path, encoding='latin')\n",
+        "print(actmed_csv.shape)"
+      ],
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "(238, 13)\n"
+          ]
+        }
+      ],
+      "execution_count": 41,
+      "metadata": {}
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "actmed_csv.head()"
+      ],
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "execution_count": 42,
+          "data": {
+            "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>patientid</th>\n      <th>offset</th>\n      <th>sex</th>\n      <th>age</th>\n      <th>finding</th>\n      <th>survival</th>\n      <th>temperature</th>\n      <th>pO2 saturation</th>\n      <th>view</th>\n      <th>modality</th>\n      <th>imagename</th>\n      <th>artifacts/distortion</th>\n      <th>notes</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>ANON196</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>PA</td>\n      <td>X-ray</td>\n      <td>CR.1.2.840.113564.1722810170.20200313090023421...</td>\n      <td>NaN</td>\n      <td>Inconclusive, date taken (YYYYMMDD): 20200313</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>ANON196</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>PA</td>\n      <td>X-ray</td>\n      <td>CR.1.2.840.113564.1722810170.20200313100318375...</td>\n      <td>NaN</td>\n      <td>Inconclusive, date taken (YYYYMMDD): 20200313</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>ANON56</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>No finding</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>PA</td>\n      <td>X-ray</td>\n      <td>CR.1.2.840.113564.1722810170.20200317090830828...</td>\n      <td>NaN</td>\n      <td>Negative (covid-19 viral infection is excluded...</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>ANON56</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>No finding</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>PA</td>\n      <td>X-ray</td>\n      <td>CR.1.2.840.113564.1722810170.20200317104341875...</td>\n      <td>NaN</td>\n      <td>Negative (covid-19 viral infection is excluded...</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>ANON196</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>COVID-19</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>PA</td>\n      <td>X-ray</td>\n      <td>CR.1.2.840.113564.1722810170.20200318082923328...</td>\n      <td>NaN</td>\n      <td>, date taken (YYYYMMDD): 20200318</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text/plain": "  patientid  offset  sex  age     finding  survival  temperature  \\\n0   ANON196     NaN  NaN  NaN         NaN       NaN          NaN   \n1   ANON196     NaN  NaN  NaN         NaN       NaN          NaN   \n2    ANON56     NaN  NaN  NaN  No finding       NaN          NaN   \n3    ANON56     NaN  NaN  NaN  No finding       NaN          NaN   \n4   ANON196     NaN  NaN  NaN    COVID-19       NaN          NaN   \n\n   pO2 saturation view modality  \\\n0             NaN   PA    X-ray   \n1             NaN   PA    X-ray   \n2             NaN   PA    X-ray   \n3             NaN   PA    X-ray   \n4             NaN   PA    X-ray   \n\n                                           imagename  artifacts/distortion  \\\n0  CR.1.2.840.113564.1722810170.20200313090023421...                   NaN   \n1  CR.1.2.840.113564.1722810170.20200313100318375...                   NaN   \n2  CR.1.2.840.113564.1722810170.20200317090830828...                   NaN   \n3  CR.1.2.840.113564.1722810170.20200317104341875...                   NaN   \n4  CR.1.2.840.113564.1722810170.20200318082923328...                   NaN   \n\n                                               notes  \n0      Inconclusive, date taken (YYYYMMDD): 20200313  \n1      Inconclusive, date taken (YYYYMMDD): 20200313  \n2  Negative (covid-19 viral infection is excluded...  \n3  Negative (covid-19 viral infection is excluded...  \n4                  , date taken (YYYYMMDD): 20200318  "
+          },
+          "metadata": {}
+        }
+      ],
+      "execution_count": 42,
+      "metadata": {}
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python",
+      "version": "3.6.9",
+      "mimetype": "text/x-python",
+      "codemirror_mode": {
+        "name": "ipython",
+        "version": 3
+      },
+      "pygments_lexer": "ipython3",
+      "nbconvert_exporter": "python",
+      "file_extension": ".py"
+    },
+    "kernel_info": {
+      "name": "python3"
+    },
+    "nteract": {
+      "version": "nteract-front-end@1.0.0"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 4
+}
