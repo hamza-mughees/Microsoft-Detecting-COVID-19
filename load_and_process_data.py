@@ -1,14 +1,25 @@
 from azure.storage.blob import BlockBlobService
+import os
 import numpy as np
 import pandas as pd
 import time
 from PIL import Image
 
-STORAGEACCOUNTNAME= 'covid19detecti4594663496'
-STORAGEACCOUNTKEY='1xRicfWfUa9rgqyMyiASbzIS+E+kNPKKIropOG/UT63z2/E9+oqrH3Htv/0PjYj6EkH+vSC7PaazBJNjW03lJA=='
-CONTAINERNAME= 'sourcedata'
-CSV_LOCAL_FILE_NAME= 'local_data_file.csv'
-CSV_FILE_BLOB_NAME= 'Covid-19-1/data_file.csv'
+from dotenv import load_dotenv
+load_dotenv()
+
+load_dotenv(verbose=True)
+
+from pathlib import Path
+env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path)
+
+STORAGEACCOUNTNAME = os.getenv('STORAGEACCOUNTNAME')
+STORAGEACCOUNTKEY = os.getenv('STORAGEACCOUNTKEY')
+CONTAINERNAME = os.getenv('CONTAINERNAME')
+
+CSV_LOCAL_FILE_NAME = 'local_data_file.csv'
+CSV_FILE_BLOB_NAME = 'Covid-19-1/data_file.csv'
 IMG_DIR_BLOB_NAME = 'Covid-19-1/images'
 
 csv_blob = BlockBlobService(account_name=STORAGEACCOUNTNAME, account_key=STORAGEACCOUNTKEY)
