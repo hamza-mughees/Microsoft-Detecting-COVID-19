@@ -1,4 +1,5 @@
 from azure.storage.blob import BlockBlobService
+import numpy as np
 import pandas as pd
 import time
 from PIL import Image
@@ -18,18 +19,49 @@ img_blob = BlockBlobService(account_name=STORAGEACCOUNTNAME, account_key=STORAGE
 # Original csv dataframe
 csv_df = pd.read_csv(CSV_LOCAL_FILE_NAME)
 
-# This dataframe will be appended to with the numpy image arrays
-df = pd.DataFrame(columns=['filename', 'diagnosis'])
+def pixels_from_path(file_path, new_size):   #returns matrix of pixel RGB values
+    img = Image.open(file_path)
+    img = img.convert('L')
+    img = img.resize(new_size)
+    np_img = np.array(img)
+    return np_img
+
+for i in range(335, csv_df.shape[0]):
+    curr_img_name = csv_df['filename'][i]
+    img_blob.get_blob_to_path(CONTAINERNAME, f'Covid-19-1/images/{curr_img_name}', 'current_image.jpeg')
+
+    np_img = pixels_from_path(file_path='current_image.jpeg', new_size=(224, 224))
+
+    np_img = np_img.reshape(1, 50176)
+    row = np.append(np_img[0], [1], axis=0)
+
+    if i == 0:
+        data = np.array([row])
+    else:
+        data = np.append(data, np.array([row]), axis=0)
+
+df = pd.DataFrame(data)
 
 print(df.head())
 
-for i in range(csv_df.shape[0]):
-    curr_img_name = csv_df['filename'][i]
-    print(curr_img_name)
-    img_blob.get_blob_to_path(CONTAINERNAME, f'Covid-19-1/images/{curr_img_name}', 'current_image.jpeg')
 
-    img = Image.open('current_image.jpeg')
-    print(img.size)
 
-    if i == 3:
-        break
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
