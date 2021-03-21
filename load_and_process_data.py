@@ -4,7 +4,7 @@ import time
 from PIL import Image
 
 STORAGEACCOUNTNAME= 'covid19detecti4594663496'
-STORAGEACCOUNTKEY='eT6uCBypyr4cyEp8hWJbUtyJz5vbvWAzuSZmeZw3+Xs3dFKcoDunEisYTGG1uW2SOsbcIq9L/hI12CLQCVCMHA=='
+STORAGEACCOUNTKEY=''
 CONTAINERNAME= 'sourcedata'
 CSV_LOCAL_FILE_NAME= 'local_data_file.csv'
 CSV_FILE_BLOB_NAME= 'Covid-19-1/data_file.csv'
