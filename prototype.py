@@ -54,7 +54,7 @@ validation_generator = test_datagen.flow_from_directory(
 hist = model.fit_generator(
     train_generator,
     steps_per_epoch = 8,
-    epochs = 10,
+    epochs = 100,
     validation_data = validation_generator,
     validation_steps = 2,
 )
