@@ -6,17 +6,17 @@ from keras.preprocessing import image
 
 model = Sequential()
 
-model.add(Conv2D(32, kernel_size=3, activation='relu', kernel_initializer='he_uniform', padding='same', input_shape=(224,224,3)))
+model.add(Conv2D(32, kernel_size=3, activation='relu',strides=(1, 1), kernel_initializer='he_uniform', padding='same', input_shape=(224,224,3)))
 model.add(MaxPooling2D(pool_size=2))
-model.add(Conv2D(64, kernel_size=3, activation='relu', kernel_initializer='he_uniform', padding='same'))
-model.add(MaxPooling2D(pool_size=2))
-model.add(Dropout(0.25))
-
-model.add(Conv2D(64, kernel_size=3, activation='relu', kernel_initializer='he_uniform', padding='same'))
+model.add(Conv2D(64, kernel_size=3, activation='relu',strides=(1, 1), kernel_initializer='he_uniform', padding='same'))
 model.add(MaxPooling2D(pool_size=2))
 model.add(Dropout(0.25))
 
-model.add(Conv2D(128, kernel_size=3, activation='relu',kernel_initializer='he_uniform', padding='same'))
+model.add(Conv2D(64, kernel_size=3, activation='relu',strides=(1, 1), kernel_initializer='he_uniform', padding='same'))
+model.add(MaxPooling2D(pool_size=2))
+model.add(Dropout(0.25))
+
+model.add(Conv2D(128, kernel_size=3, activation='relu', strides=(1, 1), kernel_initializer='he_uniform', padding='same'))
 model.add(MaxPooling2D(pool_size=2))
 model.add(Dropout(0.25))
 
@@ -55,7 +55,7 @@ validation_generator = test_datagen.flow_from_directory(
 hist = model.fit_generator(
     train_generator,
     steps_per_epoch = 8,
-    epochs = 1,
+    epochs = 100,
     validation_data = validation_generator,
     validation_steps = 2,
 )
