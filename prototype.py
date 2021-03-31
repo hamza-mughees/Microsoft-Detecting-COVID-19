@@ -74,5 +74,3 @@ hist = model.fit_generator(
 
 
 
-
-
