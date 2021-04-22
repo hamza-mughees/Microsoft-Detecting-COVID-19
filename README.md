@@ -103,7 +103,7 @@ You need to have access to Microsoft Azure.
 ## Usage 
 
 The intention of this project is to detect the presence of COVID-19 in X-Ray images of lungs.
-It works by passing an X-Ray image of lungs through our trained convolutional neural network, them the CNN will out put a positive/ negative result, Alongside the % confidence.
+It works by passing an X-Ray image of lungs through our trained convolutional neural network, them the CNN will out put a positive/ negative result, Alongside the percentage confidence.
 
 
 
