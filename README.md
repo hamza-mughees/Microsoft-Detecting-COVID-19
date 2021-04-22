@@ -96,17 +96,14 @@ You need to have access to Microsoft Azure.
    git clone https://github.com/hamza-mughees/Microsoft-Detecting-COVID-19.git
    ```
 2. Run the script 
-3. Call the image on the api
-   ```
 
 
 
 <!-- USAGE EXAMPLES -->
-## Usage - Work in Progress
+## Usage 
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Official Website](https://fov.ie/)_
+The intention of this project is to detect the presence of COVID-19 in X-Ray images of lungs.
+It works by passing an X-Ray image of lungs through our trained convolutional neural network, them the CNN will out put a positive/ negative result, Alongside the % confidence.
 
 
 
@@ -128,7 +125,7 @@ _For more examples, please refer to the [Official Website](https://fov.ie/)_
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License. 
 
 
 
@@ -147,10 +144,10 @@ Sean - `slangan@tcd.ie`</br>
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements 
-unsure what to put ? do i put microsoft // repos for xrays
-* []()
-* []()
-* []()
+* [COVID-NET](https://github.com/lindawangg/COVID-Net)
+* [
+Figure1-COVID-chestxray-dataset](https://github.com/agchung/Figure1-COVID-chestxray-dataset)
+* [COVID19-radiography-database ](https://www.kaggle.com/tawsifurrahman/COVID19-radiography-database)
 
 
 
