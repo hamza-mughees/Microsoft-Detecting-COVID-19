@@ -95,7 +95,6 @@ You need to have access to Microsoft Azure.
    ```sh
    git clone https://github.com/hamza-mughees/Microsoft-Detecting-COVID-19.git
    ```
-2. Run the script 
 
 
 
@@ -144,10 +143,19 @@ Sean - `slangan@tcd.ie`</br>
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements 
+* [COVID-chestxray-dataset](https://github.com/ieee8023/COVID-chestxray-dataset)
+* [Figure1-COVID-chestxray-dataset](https://github.com/agchung/Figure1-COVID-chestxray-dataset)
 * [COVID-NET](https://github.com/lindawangg/COVID-Net)
-* [
-Figure1-COVID-chestxray-dataset](https://github.com/agchung/Figure1-COVID-chestxray-dataset)
+
 * [COVID19-radiography-database ](https://www.kaggle.com/tawsifurrahman/COVID19-radiography-database)
+* [rsna-pneumonia-detection-challenge](https://www.kaggle.com/c/rsna-pneumonia-detection-challenge)
+* [Actualmed-COVID-chestxray-dataset](https://github.com/agchung/Actualmed-COVID-chestxray-dataset
+)
+
+
+
+
+
 
 
 
