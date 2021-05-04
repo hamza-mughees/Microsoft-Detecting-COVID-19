@@ -108,7 +108,7 @@ Install the following packages:
 ## Usage 
 
 The intention of this project is to detect the presence of COVID-19 in X-Ray images of lungs.
-It works by passing an X-Ray image of lungs through our trained convolutional neural network, them the CNN will out put a positive/ negative result, Alongside the percentage confidence.
+It works by passing an X-Ray image of lungs through our trained convolutional neural network, them the CNN will output a percentage with the probability of the diagnosis being positive. To run a diagnosis on your image, download the `api-call.py` file and insert the path to the image you wish to diagnose. Then run the script and the API will call the model and return a diagnosis of the image
 
 
 
