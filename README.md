@@ -89,11 +89,21 @@ To get a local copy up and running follow these simple steps.
 
 You need to have access to Microsoft Azure.
 Install the following packages: 
- `pip install tensorflow`
- `pip install sklearn`
- `pip install azure-storage-blob`
- `pip install requests`
- `pip install python-dotenv`
+ ```
+ pip install tensorflow
+ ```
+ ```
+ pip install sklearn
+ ```
+ ```
+ pip install azure-storage-blob
+ ```
+ ```
+ pip install requests
+ ```
+ ```
+ pip install python-dotenv
+ ```
 
 ### Installation
 
